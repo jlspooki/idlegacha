@@ -41,12 +41,8 @@ const fusionRules = {
 let gems = parseInt(localStorage.getItem("gems")) || 0;
 let collection = JSON.parse(localStorage.getItem("collection")) || [];
 let fusionPerks = JSON.parse(localStorage.getItem("fusionPerks")) || {
-  Common: { bonus: 0, fusedCount: 0 },
-  Rare: { bonus: 0, fusedCount: 0 },
-  Epic: { bonus: 0, fusedCount: 0 },
-  Legendary: { bonus: 0, fusedCount: 0 }
+  Common: 0, Rare: 0, Epic: 0, Legendary: 0
 };
-
 
 function saveState() {
   localStorage.setItem("gems", gems);
@@ -73,7 +69,7 @@ function fightBoss(boss) {
 
 
 function earnGems() {
-  const bonus = Object.values(fusionPerks).reduce((a, b) => a + b.bonus, 0);
+  const bonus = Object.values(fusionPerks).reduce((a, b) => a + b, 0);
   gems += 1 + bonus;
   saveState();
   updateUI();
@@ -135,9 +131,7 @@ function fuseUnits() {
       return true;
     });
 
-    fusionPerks[selectedRarity].bonus += bonus;
-    fusionPerks[selectedRarity].fusedCount += 1;
-
+    fusionPerks[selectedRarity] += bonus;
     saveState();
     updateUI();
     result.innerHTML = `<span>✨ Fused ${count} ${selectedRarity} units for +${bonus} gem bonus!</span>`;
@@ -152,18 +146,6 @@ function updateUI() {
   document.getElementById("gems").textContent = gems;
   const bonus = Object.values(fusionPerks).reduce((a, b) => a + b, 0);
   document.getElementById("perkBonus").textContent = `Fusion Perk Bonus: +${bonus} gems every 1 second`;
-
-  const fusionDiv = document.getElementById("fusionStats");
-fusionDiv.innerHTML = "";
-
-for (const rarity in fusionPerks) {
-  const { bonus, fusedCount } = fusionPerks[rarity];
-  const line = document.createElement("div");
-  line.textContent = `${rarity}: +${bonus} gems/sec | Fused: ${fusedCount} times`;
-  line.className = rarity;
-  fusionDiv.appendChild(line);
-}
-
 
 const collectionList = document.getElementById("collection");
 collectionList.innerHTML = "";
@@ -254,8 +236,6 @@ window.addEventListener("load", () => {
   // 💎 Start gem earning loop
   setInterval(earnGems, 1000);
 });
-
-
 
 
 
