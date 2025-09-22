@@ -126,7 +126,7 @@
 <body>
   <h1>Idle Gacha Game</h1>
   <p>Gems: <span id="gems">0</span></p>
-  <p id="perkBonus">Fusion Perk Bonus: +0 gems every second</p>
+  <p id="perkBonus">Fusion Perk Bonus: +1 gems every 1 second</p>
   <button id="rollBtn">Roll Gacha (10 Gems)</button>
   <button id="roll10Btn">10-Pull (100 Gems)</button>
   <button id="fuseBtn">Fuse Units for Perks</button>
@@ -197,7 +197,7 @@ let totalBonus = 0;
 for (let rarity in fusionPerks) {
   totalBonus += fusionPerks[rarity] * fusionRules[rarity].bonus;
 }
-perkDisplay.textContent = `Fusion Perk Bonus: +${totalBonus} gems every 3 seconds`;
+perkDisplay.textContent = `Fusion Perk Bonus: +${totalBonus} gems every 1 second`;
 
 
       const tally = { Common: 0, Rare: 0, Epic: 0, Legendary: 0 };
@@ -345,4 +345,5 @@ perkDisplay.textContent = `Fusion Perk Bonus: +${totalBonus} gems every 3 second
   </script>
 </body>
 </html>
+
 
