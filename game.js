@@ -107,10 +107,14 @@ function roll(times) {
 }
 
 function fuseUnits() {
+  let fused = false;
+
   for (const rarity in fusionRules) {
     const { count, bonus } = fusionRules[rarity];
     const owned = collection.filter(u => u.rarity === rarity);
+
     if (owned.length >= count) {
+      // Remove units
       let removed = 0;
       collection = collection.filter(u => {
         if (u.rarity === rarity && removed < count) {
@@ -119,13 +123,23 @@ function fuseUnits() {
         }
         return true;
       });
+
       fusionPerks[rarity] += bonus;
+      fused = true;
     }
   }
+
   saveState();
   updateUI();
-  document.getElementById("result").innerHTML = `<span>✨ Fusion complete!</span>`;
+
+  const result = document.getElementById("result");
+  if (fused) {
+    result.innerHTML = `<span>✨ Fusion complete!</span>`;
+  } else {
+    result.innerHTML = `<span>⚠️ Not enough units to fuse!</span>`;
+  }
 }
+
 
 function updateUI() {
   document.getElementById("gems").textContent = gems;
@@ -221,6 +235,7 @@ window.addEventListener("load", () => {
   // 💎 Start gem earning loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
