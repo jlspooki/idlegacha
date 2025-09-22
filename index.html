@@ -126,7 +126,7 @@
 <body>
   <h1>Idle Gacha Game</h1>
   <p>Gems: <span id="gems">0</span></p>
-  <p id="perkBonus">Fusion Perk Bonus: +0 gems every 3 seconds</p>
+  <p id="perkBonus">Fusion Perk Bonus: +0 gems every second</p>
   <button id="rollBtn">Roll Gacha (10 Gems)</button>
   <button id="roll10Btn">10-Pull (100 Gems)</button>
   <button id="fuseBtn">Fuse Units for Perks</button>
@@ -148,9 +148,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr><td class="Common">Common</td><td>100</td><td>+1 gems every 3s</td></tr>
-    <tr><td class="Rare">Rare</td><td>50</td><td>+2 gems every 3s</td></tr>
-    <tr><td class="Epic">Epic</td><td>20</td><td>+5 gems every 3s</td></tr>
+    <tr><td class="Common">Common</td><td>50</td><td>+1 gems every 3s</td></tr>
+    <tr><td class="Rare">Rare</td><td>35</td><td>+2 gems every 3s</td></tr>
+    <tr><td class="Epic">Epic</td><td>15</td><td>+5 gems every 3s</td></tr>
     <tr><td class="Legendary">Legendary</td><td>5</td><td>+10 gems every 3s</td></tr>
   </tbody>
 </table>
@@ -340,8 +340,9 @@ perkDisplay.textContent = `Fusion Perk Bonus: +${totalBonus} gems every 3 second
 
     window.addEventListener("load", () => {
       updateUI();
-      setInterval(earnGems, 3000);
+      setInterval(earnGems, 1000);
     });
   </script>
 </body>
 </html>
+
