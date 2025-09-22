@@ -95,13 +95,22 @@ function updateUI() {
   document.getElementById("perkBonus").textContent = `Fusion Perk Bonus: +${bonus} gems every 1 second`;
 
   const collectionList = document.getElementById("collection");
-  collectionList.innerHTML = "";
-  collection.forEach(unit => {
-    const li = document.createElement("li");
-    li.textContent = `${unit.name} (${unit.rarity})`;
-    li.className = unit.rarity;
-    collectionList.appendChild(li);
-  });
+collectionList.innerHTML = "";
+
+const countMap = {};
+collection.forEach(unit => {
+  const key = `${unit.name}|${unit.rarity}`;
+  countMap[key] = (countMap[key] || 0) + 1;
+});
+
+Object.entries(countMap).forEach(([key, count]) => {
+  const [name, rarity] = key.split("|");
+  const li = document.createElement("li");
+  li.textContent = `${name} (${rarity}) × ${count}`;
+  li.className = rarity;
+  collectionList.appendChild(li);
+});
+
 
   const encyclopediaDiv = document.getElementById("encyclopedia");
   encyclopediaDiv.innerHTML = "";
@@ -125,3 +134,4 @@ window.addEventListener("load", () => {
   updateUI();
   setInterval(earnGems, 1000);
 });
+
