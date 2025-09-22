@@ -40,7 +40,9 @@ function saveState() {
   localStorage.setItem("gems", gems);
   localStorage.setItem("collection", JSON.stringify(collection));
   localStorage.setItem("fusionPerks", JSON.stringify(fusionPerks));
+  localStorage.setItem("lastOnline", Date.now()); // ✅ Offline
 }
+
 
 function getTotalDamage() {
   return collection.reduce((sum, unit) => sum + (unit.damage || 0), 0);
@@ -195,6 +197,19 @@ document.getElementById("roll10Btn").addEventListener("click", () => roll(10));
 document.getElementById("fuseBtn").addEventListener("click", fuseUnits);
 
 window.addEventListener("load", () => {
+  // ⏱️ Offline progress
+  const lastOnline = parseInt(localStorage.getItem("lastOnline")) || Date.now();
+  const now = Date.now();
+  const secondsAway = Math.floor((now - lastOnline) / 1000);
+
+  if (secondsAway > 5) { // Optional: ignore very short gaps
+    const bonus = Object.values(fusionPerks).reduce((a, b) => a + b, 0);
+    const offlineGems = secondsAway * (1 + bonus);
+    gems += offlineGems;
+
+    document.getElementById("result").innerHTML = `<span>⏱️ You earned ${offlineGems} gems while away (${secondsAway}s)</span>`;
+  }
+
   updateUI();
 
   // 🔄 Listen for banner changes
@@ -206,6 +221,7 @@ window.addEventListener("load", () => {
   // 💎 Start gem earning loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
