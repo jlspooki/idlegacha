@@ -42,6 +42,22 @@ function saveState() {
   localStorage.setItem("fusionPerks", JSON.stringify(fusionPerks));
 }
 
+function getTotalDamage() {
+  return collection.reduce((sum, unit) => sum + (unit.damage || 0), 0);
+}
+
+function fightBoss(boss) {
+  const totalDamage = getTotalDamage();
+  const result = document.getElementById("battleResult");
+
+  if (totalDamage >= boss.hp) {
+    result.textContent = `✅ You defeated ${boss.name}! Total Damage: ${totalDamage}`;
+  } else {
+    result.textContent = `❌ You lost to ${boss.name}. Total Damage: ${totalDamage}, Boss HP: ${boss.hp}`;
+  }
+}
+
+
 function earnGems() {
   const bonus = Object.values(fusionPerks).reduce((a, b) => a + b, 0);
   gems += 1 + bonus;
@@ -135,6 +151,14 @@ Object.values(countMap).forEach(entry => {
   collectionList.appendChild(li);
 });
 
+  // 💥 Add total damage summary
+  const totalDamage = getTotalDamage();
+const damageHeader = document.createElement("li");
+damageHeader.textContent = `Total Damage: ${totalDamage}`;
+damageHeader.style.fontWeight = "bold";
+collectionList.appendChild(damageHeader);
+
+
 
   const encyclopediaDiv = document.getElementById("encyclopedia");
 encyclopediaDiv.innerHTML = "";
@@ -153,6 +177,17 @@ banners[currentBanner].forEach(unit => {
   encyclopediaDiv.appendChild(span);
 });
 
+const bossList = document.getElementById("bossList");
+bossList.innerHTML = "";
+
+bosses.forEach(boss => {
+  const btn = document.createElement("button");
+  btn.textContent = `Fight ${boss.name} (HP: ${boss.hp})`;
+  btn.addEventListener("click", () => fightBoss(boss));
+  bossList.appendChild(btn);
+});
+
+  
 }
 
 document.getElementById("rollBtn").addEventListener("click", () => roll(1));
@@ -171,6 +206,7 @@ window.addEventListener("load", () => {
   // 💎 Start gem earning loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
