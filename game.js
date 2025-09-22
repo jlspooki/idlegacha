@@ -94,10 +94,10 @@ function updateUI() {
   const bonus = Object.values(fusionPerks).reduce((a, b) => a + b, 0);
   document.getElementById("perkBonus").textContent = `Fusion Perk Bonus: +${bonus} gems every 1 second`;
 
-  const collectionList = document.getElementById("collection");
+const collectionList = document.getElementById("collection");
 collectionList.innerHTML = "";
 
-// Count how many of each unit you own
+// Count how many of each unit you own (by name + rarity)
 const countMap = {};
 collection.forEach(unit => {
   const key = `${unit.name}|${unit.rarity}`;
@@ -115,18 +115,24 @@ Object.values(countMap).forEach(entry => {
   collectionList.appendChild(li);
 });
 
+
   const encyclopediaDiv = document.getElementById("encyclopedia");
-  encyclopediaDiv.innerHTML = "";
-  const ownedNames = collection.map(u => u.name);
-  characters.forEach(unit => {
-    const span = document.createElement("span");
-    span.textContent = `${unit.name} (${unit.rarity})`;
-    span.className = unit.rarity;
-    if (ownedNames.includes(unit.name)) {
-      span.classList.add("owned");
-    }
-    encyclopediaDiv.appendChild(span);
-  });
+encyclopediaDiv.innerHTML = "";
+
+// Track owned units by name + rarity
+const ownedKeys = collection.map(u => `${u.name}|${u.rarity}`);
+
+characters.forEach(unit => {
+  const key = `${unit.name}|${unit.rarity}`;
+  const span = document.createElement("span");
+  span.textContent = `${unit.name} (${unit.rarity})`;
+  span.className = unit.rarity;
+  if (ownedKeys.includes(key)) {
+    span.classList.add("owned");
+  }
+  encyclopediaDiv.appendChild(span);
+});
+
 }
 
 document.getElementById("rollBtn").addEventListener("click", () => roll(1));
@@ -137,5 +143,6 @@ window.addEventListener("load", () => {
   updateUI();
   setInterval(earnGems, 1000);
 });
+
 
 
