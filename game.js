@@ -107,38 +107,31 @@ function roll(times) {
 }
 
 function fuseUnits() {
-  let fused = false;
-
-  for (const rarity in fusionRules) {
-    const { count, bonus } = fusionRules[rarity];
-    const owned = collection.filter(u => u.rarity === rarity);
-
-    if (owned.length >= count) {
-      // Remove units
-      let removed = 0;
-      collection = collection.filter(u => {
-        if (u.rarity === rarity && removed < count) {
-          removed++;
-          return false;
-        }
-        return true;
-      });
-
-      fusionPerks[rarity] += bonus;
-      fused = true;
-    }
-  }
-
-  saveState();
-  updateUI();
+  const selectedRarity = document.getElementById("raritySelect").value;
+  const { count, bonus } = fusionRules[selectedRarity];
+  const owned = collection.filter(u => u.rarity === selectedRarity);
 
   const result = document.getElementById("result");
-  if (fused) {
-    result.innerHTML = `<span>✨ Fusion complete!</span>`;
+
+  if (owned.length >= count) {
+    let removed = 0;
+    collection = collection.filter(u => {
+      if (u.rarity === selectedRarity && removed < count) {
+        removed++;
+        return false;
+      }
+      return true;
+    });
+
+    fusionPerks[selectedRarity] += bonus;
+    saveState();
+    updateUI();
+    result.innerHTML = `<span>✨ Fused ${count} ${selectedRarity} units for +${bonus} gem bonus!</span>`;
   } else {
-    result.innerHTML = `<span>⚠️ Not enough units to fuse!</span>`;
+    result.innerHTML = `<span>⚠️ Not enough ${selectedRarity} units to fuse!</span>`;
   }
 }
+
 
 
 function updateUI() {
@@ -235,6 +228,7 @@ window.addEventListener("load", () => {
   // 💎 Start gem earning loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
