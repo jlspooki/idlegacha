@@ -88,7 +88,7 @@ function roll(times) {
 
   gems -= cost;
   const resultDiv = document.getElementById("result");
-  resultDiv.innerHTML = `<span class="spinner">🎰</span>`;
+  resultDiv.innerHTML = `<span class="spinner">👾</span>`;
 
   setTimeout(() => {
     resultDiv.innerHTML = "";
@@ -228,6 +228,7 @@ window.addEventListener("load", () => {
   // 💎 Start gem earning loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
