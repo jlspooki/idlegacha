@@ -1,9 +1,20 @@
-const characters = [
-  { name: "Slime", rarity: "Common", rate: 0.6 },
-  { name: "Knight", rarity: "Rare", rate: 0.25 },
-  { name: "Dragon", rarity: "Epic", rate: 0.1 },
-  { name: "Celestial Fox", rarity: "Legendary", rate: 0.05 }
-];
+const banners = {
+  default: [
+    { name: "Slime", rarity: "Common", rate: 0.6 },
+    { name: "Knight", rarity: "Rare", rate: 0.25 },
+    { name: "Dragon", rarity: "Epic", rate: 0.1 },
+    { name: "Celestial Fox", rarity: "Legendary", rate: 0.05 }
+  ],
+  spooky: [
+    { name: "Pumpkin Fiend", rarity: "Common", rate: 0.5 },
+    { name: "Ghost Knight", rarity: "Rare", rate: 0.3 },
+    { name: "Witch Queen", rarity: "Epic", rate: 0.15 },
+    { name: "Spectral Dragon", rarity: "Legendary", rate: 0.05 }
+  ]
+};
+
+let currentBanner = "default";
+
 
 const fusionRules = {
   Common: { count: 50, bonus: 1 },
@@ -143,6 +154,7 @@ window.addEventListener("load", () => {
   updateUI();
   setInterval(earnGems, 1000);
 });
+
 
 
 
