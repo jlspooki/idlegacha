@@ -43,14 +43,16 @@ function earnGems() {
 }
 
 function rollCharacter() {
+  const pool = banners[currentBanner];
   const roll = Math.random();
   let cumulative = 0;
-  for (const unit of characters) {
+  for (const unit of pool) {
     cumulative += unit.rate;
     if (roll <= cumulative) return unit;
   }
-  return characters[0];
+  return pool[0];
 }
+
 
 function roll(times) {
   const cost = 10 * times;
@@ -133,7 +135,7 @@ encyclopediaDiv.innerHTML = "";
 // Track owned units by name + rarity
 const ownedKeys = collection.map(u => `${u.name}|${u.rarity}`);
 
-characters.forEach(unit => {
+banners[currentBanner].forEach(unit => {
   const key = `${unit.name}|${unit.rarity}`;
   const span = document.createElement("span");
   span.textContent = `${unit.name} (${unit.rarity})`;
@@ -152,8 +154,17 @@ document.getElementById("fuseBtn").addEventListener("click", fuseUnits);
 
 window.addEventListener("load", () => {
   updateUI();
+
+  // 🔄 Listen for banner changes
+  document.getElementById("bannerSelect").addEventListener("change", (e) => {
+    currentBanner = e.target.value;
+    updateUI();
+  });
+
+  // 💎 Start gem earning loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
