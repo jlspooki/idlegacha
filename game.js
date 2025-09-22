@@ -19,8 +19,16 @@ let currentBanner = "default";
 const bosses = [
   { name: "Goblin King", hp: 50 },
   { name: "Shadow Beast", hp: 100 },
-  { name: "Ancient Hydra", hp: 200 }
+  { name: "Ancient Hydra", hp: 200 },
+  { name: "Bone Tyrant", hp: 300 },
+  { name: "Crystal Wyrm", hp: 400 },
+  { name: "Pumpkin Overlord", hp: 500 },
+  { name: "Spectral Reaper", hp: 650 },
+  { name: "Frozen Colossus", hp: 800 },
+  { name: "Storm Djinn", hp: 1000 },
+  { name: "Celestial Leviathan", hp: 1500 }
 ];
+
 
 
 const fusionRules = {
@@ -228,6 +236,7 @@ window.addEventListener("load", () => {
   // 💎 Start gem earning loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
