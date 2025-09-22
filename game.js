@@ -97,20 +97,23 @@ function updateUI() {
   const collectionList = document.getElementById("collection");
 collectionList.innerHTML = "";
 
+// Count how many of each unit you own
 const countMap = {};
 collection.forEach(unit => {
   const key = `${unit.name}|${unit.rarity}`;
-  countMap[key] = (countMap[key] || 0) + 1;
+  if (!countMap[key]) {
+    countMap[key] = { name: unit.name, rarity: unit.rarity, count: 0 };
+  }
+  countMap[key].count += 1;
 });
 
-Object.entries(countMap).forEach(([key, count]) => {
-  const [name, rarity] = key.split("|");
+// Display each unit with its count
+Object.values(countMap).forEach(entry => {
   const li = document.createElement("li");
-  li.textContent = `${name} (${rarity}) × ${count}`;
-  li.className = rarity;
+  li.textContent = `${entry.name} (${entry.rarity}) × ${entry.count}`;
+  li.className = entry.rarity;
   collectionList.appendChild(li);
 });
-
 
   const encyclopediaDiv = document.getElementById("encyclopedia");
   encyclopediaDiv.innerHTML = "";
@@ -134,4 +137,5 @@ window.addEventListener("load", () => {
   updateUI();
   setInterval(earnGems, 1000);
 });
+
 
