@@ -1,19 +1,26 @@
 const banners = {
   default: [
-    { name: "Slime", rarity: "Common", rate: 0.6 },
-    { name: "Knight", rarity: "Rare", rate: 0.25 },
-    { name: "Dragon", rarity: "Epic", rate: 0.1 },
-    { name: "Celestial Fox", rarity: "Legendary", rate: 0.05 }
+    { name: "Slime", rarity: "Common", rate: 0.6, damage: 1 },
+    { name: "Knight", rarity: "Rare", rate: 0.25, damage: 5 },
+    { name: "Dragon", rarity: "Epic", rate: 0.1, damage: 15 },
+    { name: "Celestial Fox", rarity: "Legendary", rate: 0.05, damage: 30 }
   ],
   spooky: [
-    { name: "Pumpkin Fiend", rarity: "Common", rate: 0.5 },
-    { name: "Ghost Knight", rarity: "Rare", rate: 0.3 },
-    { name: "Witch Queen", rarity: "Epic", rate: 0.15 },
-    { name: "Spectral Dragon", rarity: "Legendary", rate: 0.05 }
+    { name: "Pumpkin Fiend", rarity: "Common", rate: 0.5, damage: 2 },
+    { name: "Ghost Knight", rarity: "Rare", rate: 0.3, damage: 6 },
+    { name: "Witch Queen", rarity: "Epic", rate: 0.15, damage: 18 },
+    { name: "Spectral Dragon", rarity: "Legendary", rate: 0.05, damage: 35 }
   ]
 };
 
+
 let currentBanner = "default";
+
+const bosses = [
+  { name: "Goblin King", hp: 50 },
+  { name: "Shadow Beast", hp: 100 },
+  { name: "Ancient Hydra", hp: 200 }
+];
 
 
 const fusionRules = {
@@ -164,6 +171,7 @@ window.addEventListener("load", () => {
   // 💎 Start gem earning loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
