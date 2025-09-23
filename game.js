@@ -232,11 +232,10 @@ window.addEventListener("load", () => {
 
     document.getElementById("result").innerHTML = `<span>⏱️ You earned ${offlineGems} gems while away (${secondsAway}s)</span>`;
 
-    showTab("roll"); // Show Roll tab by default
-
   }
 
-  updateUI();
+  showTab("roll"); // ✅ show tab first
+  updateUI();      // ✅ then populate content
 
   // 🔄 Listen for banner changes
   document.getElementById("bannerSelect").addEventListener("change", (e) => {
@@ -249,6 +248,7 @@ window.addEventListener("load", () => {
     setInterval(earnGems, 1000);
   showTab("roll"); // 👈 Add this
 });
+
 
 
 
