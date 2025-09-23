@@ -11,52 +11,73 @@
   <p>Gems: <span id="gems">0</span></p>
   <p id="perkBonus">Fusion Perk Bonus: +0 gems every 1 second</p>
 
-  <label for="bannerSelect">Choose Banner:</label>
-<select id="bannerSelect">
-  <option value="default">Default Banner</option>
-  <option value="spooky">Spooky Banner</option>
-</select>
+  <!-- 🔀 Tab Navigation -->
+  <div id="nav">
+    <button onclick="showTab('roll')">🎲 Roll</button>
+    <button onclick="showTab('fuse')">🧪 Fuse</button>
+    <button onclick="showTab('boss')">💥 Bosses</button>
+    <button onclick="showTab('collection')">📦 Collection</button>
+  </div>
 
-  <button id="rollBtn">Roll Gacha (10 Gems)</button>
-  <button id="roll10Btn">10-Pull (100 Gems)</button>
+  <!-- 🎲 Roll Tab -->
+  <div id="rollTab" class="tab">
+    <label for="bannerSelect">Choose Banner:</label>
+    <select id="bannerSelect">
+      <option value="default">Default Banner</option>
+      <option value="spooky">Spooky Banner</option>
+    </select>
 
-  
-<label for="raritySelect">Choose Rarity to Fuse:</label>
-<select id="raritySelect">
-  <option value="Common">Common</option>
-  <option value="Rare">Rare</option>
-  <option value="Epic">Epic</option>
-  <option value="Legendary">Legendary</option>
-</select>
+    <button id="rollBtn">Roll Gacha (10 Gems)</button>
+    <button id="roll10Btn">10-Pull (100 Gems)</button>
+    <div id="result"></div>
+  </div>
 
-  
-  <button id="fuseBtn">Fuse Units for Perks</button>
-  <div id="result"></div>
-  <h2>Your Collection Summary</h2>
-  <ul id="collection"></ul>
-  <h2>Unit Encyclopedia</h2>
-  <div id="encyclopedia" class="encyclopedia"></div>
-  <h2>Fusion Key</h2>
-  <table id="fusionKey">
-    <thead>
-      <tr><th>Rarity</th><th>Units Needed</th><th>Perk Gained</th></tr>
-    </thead>
-    <tbody>
-      <tr><td class="Common">Common</td><td>50</td><td>+1 gems every 1s</td></tr>
-      <tr><td class="Rare">Rare</td><td>35</td><td>+2 gems every 1s</td></tr>
-      <tr><td class="Epic">Epic</td><td>15</td><td>+5 gems every 1s</td></tr>
-      <tr><td class="Legendary">Legendary</td><td>5</td><td>+10 gems every 1s</td></tr>
-    </tbody>
-  </table>
+  <!-- 🧪 Fuse Tab -->
+  <div id="fuseTab" class="tab" style="display:none">
+    <label for="raritySelect">Choose Rarity to Fuse:</label>
+    <select id="raritySelect">
+      <option value="Common">Common</option>
+      <option value="Rare">Rare</option>
+      <option value="Epic">Epic</option>
+      <option value="Legendary">Legendary</option>
+    </select>
 
-  <h2>Boss Battle</h2>
-<div id="bossList"></div>
-<p id="battleResult"></p>
+    <button id="fuseBtn">Fuse Units for Perks</button>
 
-  
+    <h2>Fusion Key</h2>
+    <table id="fusionKey">
+      <thead>
+        <tr><th>Rarity</th><th>Units Needed</th><th>Perk Gained</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="Common">Common</td><td>50</td><td>+1 gems every 1s</td></tr>
+        <tr><td class="Rare">Rare</td><td>35</td><td>+2 gems every 1s</td></tr>
+        <tr><td class="Epic">Epic</td><td>15</td><td>+5 gems every 1s</td></tr>
+        <tr><td class="Legendary">Legendary</td><td>5</td><td>+10 gems every 1s</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 💥 Boss Tab -->
+  <div id="bossTab" class="tab" style="display:none">
+    <h2>Boss Battle</h2>
+    <div id="bossList"></div>
+    <p id="battleResult"></p>
+  </div>
+
+  <!-- 📦 Collection Tab -->
+  <div id="collectionTab" class="tab" style="display:none">
+    <h2>Your Collection Summary</h2>
+    <ul id="collection"></ul>
+
+    <h2>Unit Encyclopedia</h2>
+    <div id="encyclopedia" class="encyclopedia"></div>
+  </div>
+
   <script type="module" src="game.js"></script>
 </body>
 </html>
+
 
 
 
