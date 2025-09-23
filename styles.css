@@ -19,6 +19,38 @@ button {
   justify-content: center;
   gap: 10px;
 }
+
+.resultBox span {
+  display: inline-block;
+  margin: 4px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.Common {
+  background-color: #ccc;
+  color: #333;
+}
+
+.Rare {
+  background-color: #6fa8dc;
+  color: white;
+}
+
+.Epic {
+  background-color: #8e7cc3;
+  color: white;
+}
+
+.Legendary {
+  background-color: #e06666;
+  color: white;
+}
+
+
 .spinner {
   animation: spin 0.5s linear infinite;
   display: inline-block;
@@ -123,5 +155,6 @@ button {
 .tab {
   margin-top: 20px;
 }
+
 
 
