@@ -44,6 +44,14 @@ let fusionPerks = JSON.parse(localStorage.getItem("fusionPerks")) || {
   Common: 0, Rare: 0, Epic: 0, Legendary: 0
 };
 
+function showTab(tabName) {
+  const tabs = ["rollTab", "fuseTab", "bossTab", "collectionTab"];
+  tabs.forEach(id => {
+    document.getElementById(id).style.display = id === `${tabName}Tab` ? "block" : "none";
+  });
+}
+
+
 function saveState() {
   localStorage.setItem("gems", gems);
   localStorage.setItem("collection", JSON.stringify(collection));
@@ -236,6 +244,7 @@ window.addEventListener("load", () => {
   // 💎 Start gem earning loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
