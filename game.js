@@ -51,6 +51,8 @@ function showTab(tabName) {
   });
 }
 
+window.showTab = showTab;
+
 
 function saveState() {
   localStorage.setItem("gems", gems);
@@ -245,9 +247,12 @@ window.addEventListener("load", () => {
 
   // 💎 Start gem earning loop
   setInterval(earnGems, 1000);
-    setInterval(earnGems, 1000);
   showTab("roll"); // 👈 Add this
 });
+
+
+
+
 
 
 
