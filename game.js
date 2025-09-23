@@ -105,7 +105,7 @@ function roll(times) {
   }
 
   gems -= cost;
-  const resultDiv = document.getElementById("result");
+  const resultDiv = document.getElementById("rollResult");
   resultDiv.innerHTML = `<span class="spinner">👾</span>`;
 
   setTimeout(() => {
@@ -129,7 +129,7 @@ function fuseUnits() {
   const { count, bonus } = fusionRules[selectedRarity];
   const owned = collection.filter(u => u.rarity === selectedRarity);
 
-  const result = document.getElementById("result");
+  const result = document.getElementById("fuseResult");
 
   if (owned.length >= count) {
     let removed = 0;
@@ -232,7 +232,7 @@ window.addEventListener("load", () => {
     const offlineGems = secondsAway * (1 + bonus);
     gems += offlineGems;
 
-    document.getElementById("result").innerHTML = `<span>⏱️ You earned ${offlineGems} gems while away (${secondsAway}s)</span>`;
+    document.getElementById("rollResult").innerHTML = `<span>⏱️ You earned ${offlineGems} gems while away (${secondsAway}s)</span>`;
 
   }
 
@@ -249,6 +249,7 @@ window.addEventListener("load", () => {
   setInterval(earnGems, 1000);
   showTab("roll"); // 👈 Add this
 });
+
 
 
 
