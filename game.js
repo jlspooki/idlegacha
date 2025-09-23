@@ -231,6 +231,9 @@ window.addEventListener("load", () => {
     gems += offlineGems;
 
     document.getElementById("result").innerHTML = `<span>⏱️ You earned ${offlineGems} gems while away (${secondsAway}s)</span>`;
+
+    showTab("roll"); // Show Roll tab by default
+
   }
 
   updateUI();
@@ -243,7 +246,10 @@ window.addEventListener("load", () => {
 
   // 💎 Start gem earning loop
   setInterval(earnGems, 1000);
+    setInterval(earnGems, 1000);
+  showTab("roll"); // 👈 Add this
 });
+
 
 
 
