@@ -9,16 +9,7 @@ button {
   font-size: 16px;
   margin: 10px;
 }
-#result {
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
-  min-height: 40px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
+
 
 .resultBox span {
   display: inline-block;
@@ -29,27 +20,6 @@ button {
   font-weight: bold;
   font-size: 14px;
 }
-
-.Common {
-  background-color: #ccc;
-  color: #333;
-}
-
-.Rare {
-  background-color: #6fa8dc;
-  color: white;
-}
-
-.Epic {
-  background-color: #8e7cc3;
-  color: white;
-}
-
-.Legendary {
-  background-color: #e06666;
-  color: white;
-}
-
 
 .spinner {
   animation: spin 0.5s linear infinite;
@@ -155,6 +125,7 @@ button {
 .tab {
   margin-top: 20px;
 }
+
 
 
 
