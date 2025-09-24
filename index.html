@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Set character encoding to UTF-8 for proper text rendering -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Make the page responsive on all screen sizes -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Title shown in the browser tab -->
   <title>Idle Gacha Game</title>
+
+  <!-- Link to external CSS file for styling -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Game title -->
   <h1>Idle Gacha Game</h1>
+
+  <!-- Display current gem count -->
   <p>Gems: <span id="gems">0</span></p>
+
+  <!-- Display bonus gems earned from fusion perks -->
   <p id="perkBonus">Fusion Perk Bonus: +0 gems every 1 second</p>
 
-  <!-- 🔀 Tab Navigation -->
+  <!-- 🔀 Navigation buttons to switch between tabs -->
   <div id="nav">
     <button onclick="showTab('roll')">🎲 Roll</button>
     <button onclick="showTab('fuse')">🧪 Fuse</button>
@@ -19,21 +31,26 @@
     <button onclick="showTab('collection')">📦 Collection</button>
   </div>
 
-  <!-- 🎲 Roll Tab -->
+  <!-- 🎲 Roll Tab: lets players roll for units -->
   <div id="rollTab" class="tab">
+    <!-- Dropdown to select banner type -->
     <label for="bannerSelect">Choose Banner:</label>
     <select id="bannerSelect">
       <option value="default">Default Banner</option>
       <option value="spooky">Spooky Banner</option>
     </select>
 
+    <!-- Buttons to roll once or ten times -->
     <button id="rollBtn">Roll Gacha (10 Gems)</button>
     <button id="roll10Btn">10-Pull (100 Gems)</button>
+
+    <!-- Display roll results -->
     <div id="rollResult" class="resultBox"></div>
   </div>
 
-  <!-- 🧪 Fuse Tab -->
+  <!-- 🧪 Fuse Tab: fuse units to gain perks -->
   <div id="fuseTab" class="tab" style="display:none">
+    <!-- Dropdown to select rarity for fusion -->
     <label for="raritySelect">Choose Rarity to Fuse:</label>
     <select id="raritySelect">
       <option value="Common">Common</option>
@@ -42,14 +59,21 @@
       <option value="Legendary">Legendary</option>
     </select>
 
+    <!-- Display fusion result -->
     <div id="fuseResult"></div>
 
+    <!-- Button to perform fusion -->
     <button id="fuseBtn">Fuse Units for Perks</button>
 
+    <!-- Table showing fusion requirements and rewards -->
     <h2>Fusion Key</h2>
     <table id="fusionKey">
       <thead>
-        <tr><th>Rarity</th><th>Units Needed</th><th>Perk Gained</th></tr>
+        <tr>
+          <th>Rarity</th>
+          <th>Units Needed</th>
+          <th>Perk Gained</th>
+        </tr>
       </thead>
       <tbody>
         <tr><td class="Common">Common</td><td>50</td><td>+1 gems every 1s</td></tr>
@@ -60,31 +84,31 @@
     </table>
   </div>
 
-  <!-- 💥 Boss Tab -->
+  <!-- 💥 Boss Tab: fight bosses for rewards -->
   <div id="bossTab" class="tab" style="display:none">
     <h2>Boss Battle</h2>
+
+    <!-- List of available bosses -->
     <div id="bossList"></div>
+
+    <!-- Display result of boss battle -->
     <p id="battleResult"></p>
   </div>
 
-  <!-- 📦 Collection Tab -->
+  <!-- 📦 Collection Tab: view collected units and encyclopedia -->
   <div id="collectionTab" class="tab" style="display:none">
     <h2>Your Collection Summary</h2>
+
+    <!-- List of collected units -->
     <ul id="collection"></ul>
 
+    <!-- Encyclopedia of all units in the game -->
     <h2>Unit Encyclopedia</h2>
     <div id="encyclopedia" class="encyclopedia"></div>
   </div>
 
+  <!-- Load the main JavaScript file that controls game logic -->
   <script type="module" src="game.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
 
