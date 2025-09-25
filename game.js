@@ -415,6 +415,9 @@ window.addEventListener("load", () => {
   setInterval(earnGems, 1000);
 });
 
+window.convertGemsToShards = convertGemsToShards;
+window.rollSpecial = rollSpecial;
+
 
 
 
