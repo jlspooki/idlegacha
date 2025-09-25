@@ -214,7 +214,28 @@ function rollSpecial(times) {
   saveState();
   updateUI();
 }
+  
+function upgradeSpecialUnit(unitName) {
+  const unit = specialCollection.find(u => u.name === unitName);
+  if (!unit) {
+    alert("Unit not found!");
+    return;
+  }
 
+  const cost = unit.level * 100; // Example: Lv.2 → 200 gems
+  if (gems < cost) {
+    alert(`Not enough gems! Need ${cost} gems to upgrade.`);
+    return;
+  }
+
+  gems -= cost;
+  unit.level += 1;
+
+  saveState();
+  updateUI();
+}
+
+  
 }
 
 
@@ -323,7 +344,8 @@ specialDiv.innerHTML = "";
 
 specialCollection.forEach(unit => {
   const span = document.createElement("span");
-  span.textContent = `${unit.name} (${unit.rarity}) Lv.${unit.level || 1}`;
+  span.innerHTML = `${unit.name} (${unit.rarity}) Lv.${unit.level || 1} 
+  <button onclick="upgradeSpecialUnit('${unit.name}')">Upgrade (${unit.level * 100} gems)</button>`;
   span.className = unit.rarity;
   specialDiv.appendChild(span);
 });
@@ -375,6 +397,7 @@ window.addEventListener("load", () => {
   // 🔁 Start passive gem generation loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
