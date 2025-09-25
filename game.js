@@ -200,6 +200,10 @@ function fuseUnits() {
 function updateUI() {
   // Update gem count and perk bonus
   document.getElementById("gems").textContent = gems;
+  
+  // Update bossShard count and perk bonus
+  document.getElementById("bossShards").textContent = bossShards;
+
   const bonus = Object.values(fusionPerks).reduce((a, b) => a + b, 0);
   document.getElementById("perkBonus").textContent = `Fusion Perk Bonus: +${bonus} gems every 1 second`;
 
@@ -303,5 +307,6 @@ window.addEventListener("load", () => {
   // 🔁 Start passive gem generation loop
   setInterval(earnGems, 1000);
 });
+
 
 
