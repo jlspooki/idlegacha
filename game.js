@@ -58,6 +58,8 @@ let gems = parseInt(localStorage.getItem("gems")) || 0;
 let collection = JSON.parse(localStorage.getItem("collection")) || [];
 let fusionPerks = JSON.parse(localStorage.getItem("fusionPerks")) || {
   Common: 0, Rare: 0, Epic: 0, Legendary: 0
+
+};
 let bossShards = parseInt(localStorage.getItem("bossShards")) || 0;
 let specialCollection = JSON.parse(localStorage.getItem("specialCollection")) || [];
 
@@ -414,6 +416,7 @@ window.addEventListener("load", () => {
   // 🔁 Start passive gem generation loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
