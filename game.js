@@ -177,6 +177,39 @@ function roll(times) {
     saveState();
     updateUI();
   }, 500);
+
+  function rollSpecial(times) {
+  const costPerRoll = 10;
+  const totalCost = costPerRoll * times;
+
+  if (bossShards < totalCost) {
+    alert("Not enough Boss Shards!");
+    return;
+  }
+
+  bossShards -= totalCost;
+
+  for (let i = 0; i < times; i++) {
+    const roll = Math.random();
+    let cumulative = 0;
+    for (const unit of specialBanner) {
+      cumulative += 1 / specialBanner.length; // Equal chance for now
+      if (roll <= cumulative) {
+        // Check if already owned
+        const existing = specialCollection.find(u => u.name === unit.name);
+        if (existing) {
+          existing.level += 1;
+        } else {
+          specialCollection.push({ ...unit, level: 1 });
+        }
+        break;
+      }
+    }
+  }
+
+  saveState();
+  updateUI();
+}
 }
 
 
@@ -337,6 +370,7 @@ window.addEventListener("load", () => {
   // 🔁 Start passive gem generation loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
