@@ -178,7 +178,7 @@ function roll(times) {
     updateUI();
   }, 500);
 
-  function rollSpecial(times) {
+function rollSpecial(times) {
   const costPerRoll = 10;
   const totalCost = costPerRoll * times;
 
@@ -189,18 +189,22 @@ function roll(times) {
 
   bossShards -= totalCost;
 
+  const resultDiv = document.getElementById("specialResult");
+  resultDiv.innerHTML = ""; // ✅ Clear previous results
+
   for (let i = 0; i < times; i++) {
     const roll = Math.random();
     let cumulative = 0;
     for (const unit of specialBanner) {
-      cumulative += 1 / specialBanner.length; // Equal chance for now
+      cumulative += 1 / specialBanner.length;
       if (roll <= cumulative) {
-        // Check if already owned
         const existing = specialCollection.find(u => u.name === unit.name);
         if (existing) {
           existing.level += 1;
+          resultDiv.innerHTML += `<span>🔁 ${unit.name} leveled up to Lv.${existing.level}</span><br>`;
         } else {
           specialCollection.push({ ...unit, level: 1 });
+          resultDiv.innerHTML += `<span>✨ New unit: ${unit.name} (${unit.rarity})</span><br>`;
         }
         break;
       }
@@ -210,6 +214,7 @@ function roll(times) {
   saveState();
   updateUI();
 }
+
 }
 
 
@@ -370,6 +375,7 @@ window.addEventListener("load", () => {
   // 🔁 Start passive gem generation loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
