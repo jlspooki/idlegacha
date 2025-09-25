@@ -272,15 +272,20 @@ window.addEventListener("load", () => {
   // ⏱️ Offline progress calculation
   const lastOnline = parseInt(localStorage.getItem("lastOnline")) || Date.now();
   const now = Date.now();
-  const secondsAway = Math.floor((now - lastOnline) / 1000);
+  const maxOfflineSeconds = 6 * 60 * 60; // 6 hours
+  const secondsAway = Math.min(Math.floor((now - lastOnline) / 1000), maxOfflineSeconds);
 
-  if (secondsAway > 5) {
-    const bonus = Object.values(fusionPerks).reduce((a, b) => a + b, 0);
-    const offlineGems = secondsAway * (1 + bonus);
-    gems += offlineGems;
+ if (secondsAway > 5) {
+  const bonus = Object.values(fusionPerks).reduce((a, b) => a + b, 0);
+  const offlineGems = secondsAway * (1 + bonus);
+  gems += offlineGems;
 
-    document.getElementById("rollResult").innerHTML = `<span>⏱️ You earned ${offlineGems} gems while away (${secondsAway}s)</span>`;
+  document.getElementById("rollResult").innerHTML = `<span>⏱️ You earned ${offlineGems} gems while away (${secondsAway}s)</span>`;
+
+  if (secondsAway === maxOfflineSeconds) {
+    document.getElementById("rollResult").innerHTML += `<span>⚠️ Offline progress capped at 6 hours.</span>`;
   }
+}
 
   // 🧭 Show default tab and update UI
   showTab("roll");
@@ -295,3 +300,4 @@ window.addEventListener("load", () => {
   // 🔁 Start passive gem generation loop
   setInterval(earnGems, 1000);
 });
+
