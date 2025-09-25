@@ -178,6 +178,8 @@ function roll(times) {
     updateUI();
   }, 500);
 
+}
+
 function rollSpecial(times) {
   const costPerRoll = 10;
   const totalCost = costPerRoll * times;
@@ -412,6 +414,7 @@ window.addEventListener("load", () => {
   // 🔁 Start passive gem generation loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
