@@ -40,6 +40,14 @@ const bosses = [
   { name: "Celestial Leviathan", hp: 1500 }
 ];
 
+// 🌟 Special Banner: permanent damage units (non-fusable)
+const specialBanner = [
+  { name: "Character1", rarity: "Rare", baseDamage: 20 },
+  { name: "Character2", rarity: "Epic", baseDamage: 35 },
+  { name: "Character3", rarity: "Legendary", baseDamage: 50 },
+  { name: "Character4", rarity: "Mythic", baseDamage: 75 }
+];
+
 
 // =======================
 // 💾 GAME STATE
@@ -312,6 +320,7 @@ window.addEventListener("load", () => {
   // 🔁 Start passive gem generation loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
