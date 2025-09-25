@@ -244,6 +244,8 @@ function upgradeSpecialUnit(unitName) {
 
   gems -= conversionRate;
   bossShards += 1;
+    
+document.getElementById("conversionResult").innerHTML = `<span>✅ Converted 100 gems into 1 Boss Shard!</span>`;
 
   saveState();
   updateUI();
@@ -410,6 +412,7 @@ window.addEventListener("load", () => {
   // 🔁 Start passive gem generation loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
