@@ -235,7 +235,20 @@ function upgradeSpecialUnit(unitName) {
   updateUI();
 }
 
-  
+  function convertGemsToShards() {
+  const conversionRate = 100;
+  if (gems < conversionRate) {
+    alert("Not enough gems to convert!");
+    return;
+  }
+
+  gems -= conversionRate;
+  bossShards += 1;
+
+  saveState();
+  updateUI();
+}
+
 }
 
 
@@ -397,6 +410,7 @@ window.addEventListener("load", () => {
   // 🔁 Start passive gem generation loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
