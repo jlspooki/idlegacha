@@ -97,7 +97,12 @@ function fightBoss(boss) {
   const result = document.getElementById("battleResult");
 
   if (totalDamage >= boss.hp) {
-    result.textContent = `✅ You defeated ${boss.name}! Total Damage: ${totalDamage}`;
+  result.textContent = `✅ You defeated ${boss.name}! Total Damage: ${totalDamage}`;
+  const shardsEarned = Math.floor(boss.hp / 10); // Example formula
+  bossShards += shardsEarned;
+  result.textContent += ` You earned ${shardsEarned} Boss Shards.`;
+  saveState();
+  updateUI();
   } else {
     result.textContent = `❌ You lost to ${boss.name}. Total Damage: ${totalDamage}, Boss HP: ${boss.hp}`;
   }
@@ -307,6 +312,7 @@ window.addEventListener("load", () => {
   // 🔁 Start passive gem generation loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
