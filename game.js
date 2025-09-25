@@ -59,6 +59,7 @@ let collection = JSON.parse(localStorage.getItem("collection")) || [];
 let fusionPerks = JSON.parse(localStorage.getItem("fusionPerks")) || {
   Common: 0, Rare: 0, Epic: 0, Legendary: 0
 let bossShards = parseInt(localStorage.getItem("bossShards")) || 0;
+let specialCollection = JSON.parse(localStorage.getItem("specialCollection")) || [];
 
 };
 
@@ -87,6 +88,7 @@ function saveState() {
   localStorage.setItem("fusionPerks", JSON.stringify(fusionPerks));
   localStorage.setItem("lastOnline", Date.now());
   localStorage.setItem("bossShards", bossShards);
+  localStorage.setItem("specialCollection", JSON.stringify(specialCollection)); // ✅ Add this line
 }
 
 
@@ -96,8 +98,11 @@ function saveState() {
 
 // Calculate total damage from all collected units
 function getTotalDamage() {
-  return collection.reduce((sum, unit) => sum + (unit.damage || 0), 0);
+  const baseDamage = collection.reduce((sum, unit) => sum + (unit.damage || 0), 0);
+  const specialDamage = specialCollection.reduce((sum, unit) => sum + (unit.baseDamage * (unit.level || 1)), 0);
+  return baseDamage + specialDamage;
 }
+
 
 // Fight a boss and show result
 function fightBoss(boss) {
@@ -273,6 +278,18 @@ function updateUI() {
     btn.addEventListener("click", () => fightBoss(boss));
     bossList.appendChild(btn);
   });
+  
+// Update special units
+  const specialDiv = document.getElementById("specialCollection");
+specialDiv.innerHTML = "";
+
+specialCollection.forEach(unit => {
+  const span = document.createElement("span");
+  span.textContent = `${unit.name} (${unit.rarity}) Lv.${unit.level || 1}`;
+  span.className = unit.rarity;
+  specialDiv.appendChild(span);
+});
+
 }
 
 
@@ -320,6 +337,7 @@ window.addEventListener("load", () => {
   // 🔁 Start passive gem generation loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
