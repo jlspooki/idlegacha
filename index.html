@@ -13,10 +13,19 @@
   <!-- Link to external CSS file for styling -->
   <link rel="stylesheet" href="styles.css" />
 </head>
+ 
 <body>
-  <!-- Game title -->
+   <!-- Game title -->
   <h1>Idle Gacha Game</h1>
-
+<nav>
+  <!-- 🔀 Navigation buttons to switch between tabs -->
+  <div>
+    <button onclick="showTab('roll')">🎲 Roll</button>
+    <button onclick="showTab('fuse')">🧪 Fuse</button>
+    <button onclick="showTab('boss')">💥 Bosses</button>
+    <button onclick="showTab('collection')">📦 Collection</button>
+  </div>
+  </nav>
   <!-- Display current gem count -->
   <p>Gems: <span id="gems">0</span></p>
   
@@ -25,14 +34,6 @@
 
   <!-- Display bonus gems earned from fusion perks -->
   <p id="perkBonus">Fusion Perk Bonus: +0 gems every 1 second</p>
-
-  <!-- 🔀 Navigation buttons to switch between tabs -->
-  <div id="nav">
-    <button onclick="showTab('roll')">🎲 Roll</button>
-    <button onclick="showTab('fuse')">🧪 Fuse</button>
-    <button onclick="showTab('boss')">💥 Bosses</button>
-    <button onclick="showTab('collection')">📦 Collection</button>
-  </div>
 
   <!-- 🎲 Roll Tab: lets players roll for units -->
   <div id="rollTab" class="tab">
@@ -132,7 +133,6 @@
   <script type="module" src="game.js"></script>
 </body>
 </html>
-
 
 
 
