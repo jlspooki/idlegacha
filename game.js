@@ -371,13 +371,18 @@ specialCollection.forEach(unit => {
 
 
 specialCollection.forEach(unit => {
-  const span = document.createElement("span");
+  const card = document.createElement("div");
+  card.className = `unit-card ${unit.rarity}`;
 
-  span.innerHTML = `<span title="Base Damage: ${unit.baseDamage}">${unit.name} (${unit.rarity}) Lv.${unit.level || 1} — 💥 ${unit.baseDamage * unit.level} DMG</span>
-    <button onclick="upgradeSpecialUnit('${unit.name}')">Upgrade (${unit.level * 100} gems)</button>`;
+  card.innerHTML = `
+    <div class="unit-info" title="Base Damage: ${unit.baseDamage}">
+      <strong>${unit.name}</strong> (${unit.rarity})<br>
+      Lv.${unit.level || 1} — 💥 ${unit.baseDamage * unit.level} DMG
+    </div>
+    <button onclick="upgradeSpecialUnit('${unit.name}')">Upgrade (${unit.level * 100} gems)</button>
+  `;
 
-  span.className = unit.rarity;
-  specialDiv.appendChild(span);
+  specialDiv.appendChild(card);
 });
 
 
@@ -432,6 +437,7 @@ window.addEventListener("load", () => {
 window.convertGemsToShards = convertGemsToShards;
 window.rollSpecial = rollSpecial;
 window.upgradeSpecialUnit = upgradeSpecialUnit;
+
 
 
 
