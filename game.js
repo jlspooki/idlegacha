@@ -356,16 +356,29 @@ function updateUI() {
   });
   
 // Update special units
-  const specialDiv = document.getElementById("specialCollection");
+// 🔄 Sync special unit stats with latest banner
+const specialDiv = document.getElementById("specialCollection");
 specialDiv.innerHTML = "";
+  
+specialCollection.forEach(unit => {
+  const latest = specialBanner.find(u => u.name === unit.name);
+  if (latest) {
+    unit.rarity = latest.rarity;
+    unit.baseDamage = latest.baseDamage;
+  }
+});
+
+
 
 specialCollection.forEach(unit => {
   const span = document.createElement("span");
-  span.innerHTML = `${unit.name} (${unit.rarity}) Lv.${unit.level || 1} 
+  span.innerHTML = `${unit.name} (${unit.rarity}) Lv.${unit.level || 1} — 💥 ${unit.baseDamage * unit.level} DMG
   <button onclick="upgradeSpecialUnit('${unit.name}')">Upgrade (${unit.level * 100} gems)</button>`;
   span.className = unit.rarity;
   specialDiv.appendChild(span);
 });
+
+
 
 }
 
@@ -418,6 +431,7 @@ window.addEventListener("load", () => {
 window.convertGemsToShards = convertGemsToShards;
 window.rollSpecial = rollSpecial;
 window.upgradeSpecialUnit = upgradeSpecialUnit;
+
 
 
 
