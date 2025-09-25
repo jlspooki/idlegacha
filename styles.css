@@ -132,6 +132,43 @@ button {
   font-size: 12px;
 }
 
+.unit-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #f9f9f9;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-size: 14px;
+  word-break: break-word;
+}
+
+.unit-card button {
+  margin-top: 6px;
+  font-size: 13px;
+  padding: 4px 8px;
+}
+
+.unit-info {
+  line-height: 1.4;
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  .unit-card {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .unit-card button {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+}
+
+
 
 
 
