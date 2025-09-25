@@ -63,7 +63,6 @@ let fusionPerks = JSON.parse(localStorage.getItem("fusionPerks")) || {
 let bossShards = parseInt(localStorage.getItem("bossShards")) || 0;
 let specialCollection = JSON.parse(localStorage.getItem("specialCollection")) || [];
 
-};
 
 
 // =======================
@@ -255,7 +254,6 @@ document.getElementById("conversionResult").innerHTML = `<span>✅ Converted 100
   updateUI();
 }
 
-}
 
 
 // =======================
@@ -416,6 +414,7 @@ window.addEventListener("load", () => {
   // 🔁 Start passive gem generation loop
   setInterval(earnGems, 1000);
 });
+
 
 
 
