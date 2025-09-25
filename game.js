@@ -42,10 +42,10 @@ const bosses = [
 
 // 🌟 Special Banner: permanent damage units (non-fusable)
 const specialBanner = [
-  { name: "Character1", rarity: "Rare", baseDamage: 20 },
-  { name: "Character2", rarity: "Epic", baseDamage: 35 },
-  { name: "Character3", rarity: "Legendary", baseDamage: 50 },
-  { name: "Character4", rarity: "Mythic", baseDamage: 75 }
+  { name: "Character1", rarity: "Common", baseDamage: 20 },
+  { name: "Character2", rarity: "Rare", baseDamage: 35 },
+  { name: "Character3", rarity: "Epic", baseDamage: 50 },
+  { name: "Character4", rarity: "Legendary", baseDamage: 75 }
 ];
 
 
@@ -417,6 +417,8 @@ window.addEventListener("load", () => {
 
 window.convertGemsToShards = convertGemsToShards;
 window.rollSpecial = rollSpecial;
+window.upgradeSpecialUnit = upgradeSpecialUnit;
+
 
 
 
